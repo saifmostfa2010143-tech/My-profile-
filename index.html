@@ -29,6 +29,16 @@
             min-height: 100vh;
             line-height: 1.5;
         }
+                /* تأثير الظهور التدريجي - Apple Style */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header, .container {
+            animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
 
         header {
             text-align: center;
