@@ -1,130 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سيف مصطفى | Ultimate iOS Interactive</title>
-<style>
-:root{
-  --accent-blue:#0071e3;
-  --text-main:#f5f5f7;
-  --text-dim:#86868b;
-  --glass-bg:rgba(255,255,255,0.05);
-  --glass-border:rgba(255,255,255,0.125);
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;}
-body{background:#0a0a0f;color:var(--text-main);overflow-x:hidden;position:relative;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيف مصطفى | مبرمج ومصمم مواقع</title>
+    
+    <meta name="description" content="الموقع الرسمي للمبرمج سيف مصطفى. متخصص في تصميم وبناء مواقع الويب الاحترافية بتصميمات عصرية.">
+    <meta name="keywords" content="سيف مصطفى, مبرمج مواقع, مصمم مواقع, Web Designer, Apple Design, Glassmorphism">
+    <meta name="author" content="سيف مصطفى">
 
-/* Background Layers */
-.wave {
-  position:fixed;bottom:-50%;left:-50%;width:200%;height:200%;border-radius:50%;
-  z-index:-3;animation:waveMove linear infinite;
-}
-.wave1{background:radial-gradient(circle,rgba(0,113,227,0.05),transparent 70%);animation-duration:20s;}
-.wave2{background:radial-gradient(circle,rgba(255,255,255,0.03),transparent 70%);animation-duration:25s;}
-.wave3{background:radial-gradient(circle,rgba(0,255,255,0.02),transparent 70%);animation-duration:30s;}
-@keyframes waveMove{0%{transform:translateX(0) translateY(0);}50%{transform:translateX(-50px) translateY(-20px);}100%{transform:translateX(0) translateY(0);}}
+    <style>
+        :root {
+            /* ألوان أبل الحديثة */
+            --bg-gradient: radial-gradient(circle at top right, #1e293b, #000000);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.125);
+            --accent-blue: #0071e3; /* لون أبل الأزرق الرسمي */
+            --text-main: #f5f5f7;
+            --text-dim: #86868b;
+        }
 
-/* Fade-in */
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+                /* تأثير الظهور التدريجي - Apple Style */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* Header */
-header{text-align:center;padding:120px 20px 60px;animation:fadeIn 1s ease-out;}
-header h1{font-size:clamp(2.5rem,8vw,3.5rem);font-weight:600;background: linear-gradient(180deg,#fff 0%,#86868b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-header p{margin-top:15px;font-size:1.2rem;color:var(--text-dim);}
+        header, .container {
+            animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
 
-/* Cards */
-.container{max-width:1000px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px;}
-.card{position:relative;background:var(--glass-bg);backdrop-filter:blur(25px);border-radius:24px;padding:30px;border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;}
-.card::before{content:"";position:absolute;width:250%;height:250%;top:-75%;left:-75%;background:radial-gradient(circle,rgba(0,113,227,0.15),transparent 70%);filter:blur(50px);transform:rotate(45deg);opacity:0;transition:opacity 0.3s;}
-.card:hover::before,.card:active::before{opacity:1;}
-.card:hover{transform:scale(1.03);box-shadow:0 20px 40px rgba(0,113,227,0.4);}
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
 
-/* Ripple effect placeholder */
-.ripple {
-  position:absolute;
-  border-radius:50%;
-  background:rgba(0,113,227,0.3);
-  transform:scale(0);
-  animation:rippleAnim 0.6s linear;
-  pointer-events:none;
-  z-index:10;
-}
-@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
+        header h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin: 0;
+            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* Buttons */
-.btn{display:inline-block;background:var(--accent-blue);color:white;text-decoration:none;padding:12px 24px;border-radius:980px;font-size:0.9rem;font-weight:500;text-align:center;transition:all 0.2s ease;}
-.btn:hover{background:#0077ed;box-shadow:0 0 25px rgba(0,113,227,0.5);}
+        header p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin-top: 15px;
+            font-weight: 400;
+        }
 
-/* Bottom Bar */
-.bottom-bar{position:fixed;bottom:0;width:100%;height:70px;display:flex;justify-content:space-around;align-items:center;background:var(--glass-bg);backdrop-filter:blur(30px);border-top:1px solid var(--glass-border);z-index:100;overflow:hidden;}
-.bottom-bar a{color:var(--text-main);text-decoration:none;font-weight:600;transition:0.3s;position:relative;}
-.bottom-bar a:hover{color:var(--accent-blue);transform:scale(1.2);}
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
 
-/* Particles for Bottom Bar */
-.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--accent-blue);opacity:0;pointer-events:none;animation:particleMove 0.8s ease-out forwards;}
-@keyframes particleMove{0%{transform:translate(0,0);opacity:1;}100%{transform:translate(var(--dx),var(--dy));opacity:0;}}
+        /* تأثير الزجاج (Glassmorphism) */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-/* Responsive */
-@media(max-width:600px){.container{grid-template-columns:1fr;}}
-</style>
+        .card:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 980px; /* شكل أزرار أبل البيضاوي */
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #0077ed;
+            box-shadow: 0 0 15px rgba(0, 113, 227, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* لمسة جمالية: دوائر ضوئية في الخلفية */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 40%;
+            height: 40%;
+            background: rgba(0, 113, 227, 0.15);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
 
-<div class="wave wave1"></div>
-<div class="wave wave2"></div>
-<div class="wave wave3"></div>
+    <header>
+        <h1>سيف مصطفى</h1>
+        <p>تصميم متميز. برمجة ذكية.</p>
+    </header>
 
-<header>
-<h1>سيف مصطفى</h1>
-<p>تصميم متميز. برمجة ذكية.</p>
-</header>
+    <div class="container">
+        <div class="card">
+            <div>
+                <h3>Cowboy Maze</h3>
+                <p>استكشاف المتاهات المظلمة بتصميم بصري غامر وتجربة مستخدم فريدة.</p>
+            </div>
+            <a href="https://saifmostfa2010143-tech.github.io/shadow-maze/" class="btn">اكتشف اللعبة</a>
+        </div>
 
-<section class="container">
-  <div class="card"><div><h3>Cowboy Maze</h3><p>استكشاف المتاهات المظلمة بتصميم بصري غامر وتجربة مستخدم فريدة.</p></div><a href="https://saifmostfa2010143-tech.github.io/shadow-maze/" class="btn">اكتشف اللعبة</a></div>
-  <div class="card"><div><h3>Ninja Legend</h3><p>تطبيق حركي يدمج بين سلاسة التصميم وقوة الأداء في عالم النينجا.</p></div><a href="https://saifmostfa2010143-tech.github.io/Ninga_game/" class="btn">اكتشف اللعبة</a></div>
-  <div class="card"><div><h3>Darb Al sorsar</h3><p>لعبة ضرب الصرصار المصري اللعين.</p></div><a href="https://saifmostfa2010143-tech.github.io/Darb_Alsorsar/" class="btn">اكتشف اللعبة</a></div>
-  <div class="card"><div><h3>Calculator</h3><p>آلة حاسبة مودرن.</p></div><a href="https://saifmostfa2010143-tech.github.io/Calculator-//" class="btn">اكتشف اللعبة</a></div>
-  <div class="card"><div><h3>Galaxy Stars</h3><p>تحكم بالنجوم كأنك ثقب أسود.</p></div><a href="https://saifmostfa2010143-tech.github.io/galaxy.html/" class="btn">اكتشف اللعبة</a></div>
-</section>
-
-<!-- Bottom Bar -->
-<div class="bottom-bar">
-  <a href="#home">الرئيسية</a>
-  <a href="#projects">الألعاب</a>
-  <a href="#about">نبذة عني</a>
-  <a href="#contact">تواصل معي</a>
+        <div class="card">
+            <div>
+                <h3>Ninja Legend</h3>
+                <p>تطبيق حركي يدمج بين سلاسة التصميم وقوة الأداء في عالم النينجا.</p>
+            </div>
+            <a href="https://saifmostfa2010143-tech.github.io/Ninga_game/" class="btn">اكتشف اللعبة</a>
+        </div>
+        <div class="card">
+            <div>
+                <h3>Darb Al sorsar</h3>
+                <p>لعبة ضرب الصرصار المصري اللعين.</p>
+            </div>
+            <a href="https://saifmostfa2010143-tech.github.io/Darb_Alsorsar/" class="btn">اكتشف اللعبة</a>
+        </div>
+        <div class="card">
+    <div>
+        <h3>Calculator</h3>
+        <p>آلة حاسبة مودرن.</p>
+    </div>
+    <a href="https://saifmostfa2010143-tech.github.io/Calculator-//" class="btn">اكتشف اللعبة</a>
 </div>
 
-<script>
-// Ripple effect
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    const ripple=document.createElement('div');
-    ripple.className='ripple';
-    ripple.style.left=e.offsetX+'px';
-    ripple.style.top=e.offsetY+'px';
-    card.appendChild(ripple);
-    setTimeout(()=>ripple.remove(),600);
-  });
-});
+<div class="card">
+    <div>
+        <h3>Galaxy Stars</h3>
+        <p>تحكم بالنجوم كأنك ثقب أسود.</p>
+    </div>
+    <a href="https://saifmostfa2010143-tech.github.io/galaxy.html/" class="btn">اكتشف اللعبة</a>
+</div>
+        
+    </div>
 
-// Bottom Bar particles
-document.querySelectorAll('.bottom-bar a').forEach(link=>{
-  link.addEventListener('mouseenter',e=>{
-    for(let i=0;i<8;i++){
-      const p=document.createElement('div');
-      p.className='particle';
-      const dx=Math.random()*40-20;
-      const dy=Math.random()*40-20;
-      p.style.setProperty('--dx',dx+'px');
-      p.style.setProperty('--dy',dy+'px');
-      link.appendChild(p);
-      setTimeout(()=>p.remove(),800);
-    }
-  });
-});
-</script>
+    <footer>
+        &copy; 2026 Crafted by Saif Mostafa. Built with AI.
+    </footer>
 
 </body>
 </html>
