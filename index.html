@@ -15,9 +15,12 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;}
 body{background:#0a0a0f;color:var(--text-main);overflow-x:hidden;position:relative;}
 
-/* Multi-layer Liquid Waves */
-.wave{position:fixed;bottom:-50%;left:-50%;width:200%;height:200%;border-radius:50%;animation:waveMove 20s linear infinite;z-index:-3;}
-.wave1{background:radial-gradient(circle,rgba(0,113,227,0.05),transparent 70%);}
+/* Background Layers */
+.wave {
+  position:fixed;bottom:-50%;left:-50%;width:200%;height:200%;border-radius:50%;
+  z-index:-3;animation:waveMove linear infinite;
+}
+.wave1{background:radial-gradient(circle,rgba(0,113,227,0.05),transparent 70%);animation-duration:20s;}
 .wave2{background:radial-gradient(circle,rgba(255,255,255,0.03),transparent 70%);animation-duration:25s;}
 .wave3{background:radial-gradient(circle,rgba(0,255,255,0.02),transparent 70%);animation-duration:30s;}
 @keyframes waveMove{0%{transform:translateX(0) translateY(0);}50%{transform:translateX(-50px) translateY(-20px);}100%{transform:translateX(0) translateY(0);}}
@@ -32,29 +35,35 @@ header p{margin-top:15px;font-size:1.2rem;color:var(--text-dim);}
 
 /* Cards */
 .container{max-width:1000px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px;}
-.card{position:relative;background:var(--glass-bg);backdrop-filter:blur(25px);border-radius:24px;padding:30px;border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform 0.5s ease, box-shadow 0.5s ease;}
-.card::before{content:"";position:absolute;width:250%;height:250%;top:-75%;left:-75%;background:radial-gradient(circle,rgba(0,113,227,0.15),transparent 70%);filter:blur(50px);transform:rotate(45deg);opacity:0;transition:opacity 0.5s;}
+.card{position:relative;background:var(--glass-bg);backdrop-filter:blur(25px);border-radius:24px;padding:30px;border:1px solid var(--glass-border);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;}
+.card::before{content:"";position:absolute;width:250%;height:250%;top:-75%;left:-75%;background:radial-gradient(circle,rgba(0,113,227,0.15),transparent 70%);filter:blur(50px);transform:rotate(45deg);opacity:0;transition:opacity 0.3s;}
 .card:hover::before,.card:active::before{opacity:1;}
-.card:hover{transform:scale(1.05);box-shadow:0 25px 50px rgba(0,113,227,0.4);}
+.card:hover{transform:scale(1.03);box-shadow:0 20px 40px rgba(0,113,227,0.4);}
 
-/* Ripple particles */
-.card:active::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(0,113,227,0.3);animation:ripple 0.6s linear; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);}
-@keyframes ripple{to{transform:translate(-50%,-50%) scale(4);opacity:0;}}
+/* Ripple effect placeholder */
+.ripple {
+  position:absolute;
+  border-radius:50%;
+  background:rgba(0,113,227,0.3);
+  transform:scale(0);
+  animation:rippleAnim 0.6s linear;
+  pointer-events:none;
+  z-index:10;
+}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
 
 /* Buttons */
 .btn{display:inline-block;background:var(--accent-blue);color:white;text-decoration:none;padding:12px 24px;border-radius:980px;font-size:0.9rem;font-weight:500;text-align:center;transition:all 0.2s ease;}
 .btn:hover{background:#0077ed;box-shadow:0 0 25px rgba(0,113,227,0.5);}
 
-/* Bottom Liquid Bar */
+/* Bottom Bar */
 .bottom-bar{position:fixed;bottom:0;width:100%;height:70px;display:flex;justify-content:space-around;align-items:center;background:var(--glass-bg);backdrop-filter:blur(30px);border-top:1px solid var(--glass-border);z-index:100;overflow:hidden;}
-.bottom-bar a{color:var(--text-main);text-decoration:none;font-weight:600;transition:0.3s;}
+.bottom-bar a{color:var(--text-main);text-decoration:none;font-weight:600;transition:0.3s;position:relative;}
 .bottom-bar a:hover{color:var(--accent-blue);transform:scale(1.2);}
 
-/* Bubble */
-.bubble{position:absolute;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.08);animation:float 5s infinite ease-in-out;}
-.bubble:nth-child(1){left:10%;animation-delay:0s;}
-.bubble:nth-child(2){left:80%;animation-delay:2s;}
-@keyframes float{0%{transform:translateY(0) translateX(0);}50%{transform:translateY(-20px) translateX(15px);}100%{transform:translateY(0) translateX(0);}
+/* Particles for Bottom Bar */
+.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--accent-blue);opacity:0;pointer-events:none;animation:particleMove 0.8s ease-out forwards;}
+@keyframes particleMove{0%{transform:translate(0,0);opacity:1;}100%{transform:translate(var(--dx),var(--dy));opacity:0;}}
 
 /* Responsive */
 @media(max-width:600px){.container{grid-template-columns:1fr;}}
@@ -79,15 +88,43 @@ header p{margin-top:15px;font-size:1.2rem;color:var(--text-dim);}
   <div class="card"><div><h3>Galaxy Stars</h3><p>تحكم بالنجوم كأنك ثقب أسود.</p></div><a href="https://saifmostfa2010143-tech.github.io/galaxy.html/" class="btn">اكتشف اللعبة</a></div>
 </section>
 
-<!-- Bottom Liquid Bar -->
+<!-- Bottom Bar -->
 <div class="bottom-bar">
-  <span class="bubble"></span>
   <a href="#home">الرئيسية</a>
   <a href="#projects">الألعاب</a>
   <a href="#about">نبذة عني</a>
   <a href="#contact">تواصل معي</a>
-  <span class="bubble"></span>
 </div>
+
+<script>
+// Ripple effect
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click',e=>{
+    const ripple=document.createElement('div');
+    ripple.className='ripple';
+    ripple.style.left=e.offsetX+'px';
+    ripple.style.top=e.offsetY+'px';
+    card.appendChild(ripple);
+    setTimeout(()=>ripple.remove(),600);
+  });
+});
+
+// Bottom Bar particles
+document.querySelectorAll('.bottom-bar a').forEach(link=>{
+  link.addEventListener('mouseenter',e=>{
+    for(let i=0;i<8;i++){
+      const p=document.createElement('div');
+      p.className='particle';
+      const dx=Math.random()*40-20;
+      const dy=Math.random()*40-20;
+      p.style.setProperty('--dx',dx+'px');
+      p.style.setProperty('--dy',dy+'px');
+      link.appendChild(p);
+      setTimeout(()=>p.remove(),800);
+    }
+  });
+});
+</script>
 
 </body>
 </html>
